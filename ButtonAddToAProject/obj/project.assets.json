@@ -5376,11 +5376,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AZC167387\\Desktop\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
+      "projectUniqueName": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
       "projectName": "ButtonAddToAProject",
-      "projectPath": "C:\\Users\\AZC167387\\Desktop\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
+      "projectPath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
       "packagesPath": "C:\\Users\\AZC167387\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AZC167387\\Desktop\\ButtonAddToAProject\\obj\\",
+      "outputPath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\ButtonAddToAProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AZC167387\\AppData\\Roaming\\NuGet\\NuGet.Config",

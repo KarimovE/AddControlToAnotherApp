@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jqjPkPHHMela3BSADox3GEDu5ewFIJt/3uMVEot19WAiq3rkemEk8F7IIhZZ2ROfWbMkAJYTmhtWi6QW5kusTw==",
+  "dgSpecHash": "MYzMp+FF9HcyxSTzKg6rQHZrmyjNhQpSADEOb4XtGRcBPpU4J5FOzde8IwC+DLb3dWncua8KxPiQ1oCK0frjZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AZC167387\\Desktop\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
+  "projectFilePath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\ButtonAddToAProject\\ButtonAddToAProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AZC167387\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\AZC167387\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

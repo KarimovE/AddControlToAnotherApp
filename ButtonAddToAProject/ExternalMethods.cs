@@ -6,7 +6,7 @@ public class ExternalMethods
 {
 
 
-        [DllImport("User32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string ClassN, string WindN);
 
         [DllImport("user32.dll", SetLastError = true)]
