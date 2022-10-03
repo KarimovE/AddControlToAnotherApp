@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "158d45bc-8ea5-47a9-85a6-e29e078bd428": {
+      "ProjectGuid": "158d45bc-8ea5-47a9-85a6-e29e078bd428",
+      "DisplayName": "AddButtonToWindows",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
