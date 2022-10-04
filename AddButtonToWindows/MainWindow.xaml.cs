@@ -11,10 +11,10 @@ namespace AddButtonToWindows
 {
     public partial class MainWindow : Window
     {
+        private delegate void Execute();
         private IntPtr TargetWnd = new IntPtr(0);
         int left, top, right, bottom;
         private BackgroundWorker bg_loadprocess;
-        private delegate void Execute();
 
         public MainWindow()
         {
@@ -31,7 +31,7 @@ namespace AddButtonToWindows
 
         private void btn_find_Click(object sender, RoutedEventArgs e)
         {
-            ProcessItem? pro = ProcessList.SelectedItem as ProcessItem;
+            ProcessItem pro = ProcessList.SelectedItem as ProcessItem;
 
             string ModuleName = pro.ProcessName;
             string MainWindowTitle = pro.Title; ;
@@ -62,13 +62,10 @@ namespace AddButtonToWindows
             {
                 try
                 {
-                    //When using 64bit OS pro.MainModule.ModuleName will throw exception
-                    // for each 32bit, so Instead of ModuleName I've used ProcessName
                     ProcessList.Items.Add(new ProcessItem(pro.ProcessName, pro.MainWindowTitle));
                 }
                 catch (Exception)
                 {
-                    //Security\ Permissions Issue
                 }
             }
         }

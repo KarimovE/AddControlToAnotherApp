@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AZC167387\\Desktop\\AddButtonToWindows\\AddButtonToWindows.csproj",
+      "projectUniqueName": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\AddButtonToWindows\\AddButtonToWindows.csproj",
       "projectName": "AddButtonToWindows",
-      "projectPath": "C:\\Users\\AZC167387\\Desktop\\AddButtonToWindows\\AddButtonToWindows.csproj",
+      "projectPath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\AddButtonToWindows\\AddButtonToWindows.csproj",
       "packagesPath": "C:\\Users\\AZC167387\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AZC167387\\Desktop\\AddButtonToWindows\\obj\\",
+      "outputPath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\AddButtonToWindows\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AZC167387\\AppData\\Roaming\\NuGet\\NuGet.Config",

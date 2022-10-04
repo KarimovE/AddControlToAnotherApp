@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6N7GNd1BVmvUMMEKMwzpWeYwPfC77Nu1A8YphdRyK+y8jqW31fTffyJgGFHzXTxn3Bszlik2RFOhk0ILq2IUtw==",
+  "dgSpecHash": "6tKa7MFZf9uC3lgULyOi5VNGtMnnghLM8QrUnPL/+593tr7XuZreCmHm1FTlmDCin7i+P6+EJz8SB1pA2RQltA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AZC167387\\Desktop\\AddButtonToWindows\\AddButtonToWindows.csproj",
+  "projectFilePath": "C:\\Users\\AZC167387\\Desktop\\AddControlToAnotherApp\\AddButtonToWindows\\AddButtonToWindows.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
