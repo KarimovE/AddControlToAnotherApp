@@ -12,7 +12,7 @@ namespace AddButtonToWindows
 
         public void rectangle1_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

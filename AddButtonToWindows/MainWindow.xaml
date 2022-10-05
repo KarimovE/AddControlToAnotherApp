@@ -12,6 +12,7 @@
         <Label Content="Process List:" Height="28" HorizontalAlignment="Left" Margin="12,0,0,0" Name="label1" VerticalAlignment="Top" />
         <Button Content="Get Window Position" Height="23" HorizontalAlignment="Right" Margin="0,95,12,0" Name="btn_get_pos" VerticalAlignment="Top" Width="127" IsEnabled="True" Click="btn_get_pos_Click" />
         <Button Content="Set Event" Height="23" HorizontalAlignment="Right" Margin="0,154,12,0" Name="btn_set_event" VerticalAlignment="Top" Width="127" IsEnabled="True" Click="btn_set_event_Click" />
-        <Button Content="Add Control" Height="23" HorizontalAlignment="Right" Margin="0,124,12,0" Name="btn_add" VerticalAlignment="Top" Width="127" IsEnabled="True" Click="btn_add_Click" />
+        <Button FontSize="6" Content="Add Control" Height="10" HorizontalAlignment="Right" Margin="0,139,12,0" Name="btn_add" VerticalAlignment="Top" Width="127" IsEnabled="True" Click="btn_add_Click" />
+        <Button FontSize="6" Content="Remore Control" Height="10" HorizontalAlignment="Right" Margin="0,123,12,0" Name="btn_remove" VerticalAlignment="Top" Width="127" IsEnabled="True" Click="btn_remove_Click" />
     </Grid>
 </Window>

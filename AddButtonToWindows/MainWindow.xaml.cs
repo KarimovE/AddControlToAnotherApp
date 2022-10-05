@@ -34,7 +34,7 @@ namespace AddButtonToWindows
             ProcessItem pro = ProcessList.SelectedItem as ProcessItem;
 
             string ModuleName = pro.ProcessName;
-            string MainWindowTitle = pro.Title; ;
+            string MainWindowTitle = pro.Title; 
 
             TargetWnd = Helpers.Find(ModuleName, MainWindowTitle);
 
@@ -96,6 +96,13 @@ namespace AddButtonToWindows
 
         void GetWindowPosition(bool log)
         {
+            ProcessItem pro = ProcessList.SelectedItem as ProcessItem;
+
+            string ModuleName = pro.ProcessName;
+            string MainWindowTitle = pro.Title;
+
+            TargetWnd = Helpers.Find(ModuleName, MainWindowTitle);
+
             var pos = Helpers.GetWindowPosition(TargetWnd);
 
             left = pos.Left;
@@ -104,22 +111,25 @@ namespace AddButtonToWindows
             top = pos.Top;
 
             if (log)
-                Log(string.Format("Left:{0} , Top:{1} , Top:{2} , Top:{3}", left, top, right, bottom));
+                Log(string.Format("Left:{0} , Top:{1} , Right:{2} , Bottom:{3}", left, top, right, bottom));
 
             //retrieves the last system error.
             Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
         }
 
-        private HoverControl OnTopControl;
+        private HoverControl? OnTopControl;
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             SetControl(true);
         }
-
+        private void btn_remove_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveControl(true);
+        }
         void SetControl(bool log)
         {
-            if (OnTopControl != null)
-                OnTopControl.Close();
+            if (OnTopControl == null)
+            { 
             OnTopControl = new HoverControl();
             OnTopControl.Show();
             IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
@@ -132,7 +142,15 @@ namespace AddButtonToWindows
 
             Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
         }
-
+        }
+        void RemoveControl(bool log)
+        {
+            if (OnTopControl != null)
+            {
+                OnTopControl.Close();
+                OnTopControl = null;
+            }
+        }
         IntPtr g_hook;
         private void btn_set_event_Click(object sender, RoutedEventArgs e)
         {
@@ -157,19 +175,34 @@ namespace AddButtonToWindows
 
         }
 
-        private Dictionary<AccessibleEvents, NativeMethods.WinEventProc> InitializeWinEventToHandlerMap()
+        private Dictionary<AccessibleEvents, NativeMethods.WinEventProc>
+            InitializeWinEventToHandlerMap()
         {
-            Dictionary<AccessibleEvents, NativeMethods.WinEventProc> dictionary = new Dictionary<AccessibleEvents, NativeMethods.WinEventProc>();
-            dictionary.Add(AccessibleEvents.LocationChange, new NativeMethods.WinEventProc(this.LocationChangedCallback));
-            dictionary.Add(AccessibleEvents.Destroy, new NativeMethods.WinEventProc(this.DestroyCallback));
+            Dictionary<AccessibleEvents, NativeMethods.WinEventProc> dictionary =
+                new Dictionary<AccessibleEvents, NativeMethods.WinEventProc>();
+            //You can add more events like ValueChanged - for more info please read - 
+            //http://msdn.microsoft.com/en-us/library/system.windows.forms.accessibleevents.aspx
+            //dictionary.Add(AccessibleEvents.ValueChange, 
+            //new NativeMethods.WinEventProc(this.ValueChangedCallback));
+            dictionary.Add(AccessibleEvents.LocationChange,
+                new NativeMethods.WinEventProc(this.LocationChangedCallback));
+            dictionary.Add(AccessibleEvents.Destroy,
+                new NativeMethods.WinEventProc(this.DestroyCallback));
 
             return dictionary;
         }
 
-        private void DestroyCallback(IntPtr winEventHookHandle, AccessibleEvents accEvent, IntPtr windowHandle, int objectId, int childId, uint eventThreadId, uint eventTimeInMilliseconds)
+        private void DestroyCallback(IntPtr winEventHookHandle,
+            AccessibleEvents accEvent, IntPtr windowHandle, int objectId,
+            int childId, uint eventThreadId, uint eventTimeInMilliseconds)
         {
-            if (accEvent == AccessibleEvents.Destroy && windowHandle.ToInt32() == TargetWnd.ToInt32())
+            //Make sure AccessibleEvents equals to LocationChange and the 
+            //current window is the Target Window.
+            if (accEvent == AccessibleEvents.Destroy && windowHandle.ToInt32() ==
+                TargetWnd.ToInt32())
             {
+                //Queues a method for execution. The method executes when a thread pool 
+                //thread becomes available.
                 ThreadPool.QueueUserWorkItem(new WaitCallback(this.DestroyHelper));
             }
         }
@@ -178,16 +211,25 @@ namespace AddButtonToWindows
         {
             Execute ex = delegate ()
             {
+                //Removes an event hook function created by a previous call to 
                 NativeMethods.UnhookWinEvent(g_hook);
+                //Close HoverControl window.
                 OnTopControl.Close();
             };
             this.Dispatcher.Invoke(ex, null);
         }
 
-        private void LocationChangedCallback(IntPtr winEventHookHandle, AccessibleEvents accEvent, IntPtr windowHandle, int objectId, int childId, uint eventThreadId, uint eventTimeInMilliseconds)
+        private void LocationChangedCallback(IntPtr winEventHookHandle,
+            AccessibleEvents accEvent, IntPtr windowHandle, int objectId,
+            int childId, uint eventThreadId, uint eventTimeInMilliseconds)
         {
-            if (accEvent == AccessibleEvents.LocationChange && windowHandle.ToInt32() == TargetWnd.ToInt32())
+            //Make sure AccessibleEvents equals to LocationChange and the 
+            //current window is the Target Window.
+            if (accEvent == AccessibleEvents.LocationChange && windowHandle.ToInt32() ==
+                TargetWnd.ToInt32())
             {
+                //Queues a method for execution. The method executes when a thread pool 
+                //thread becomes available.
                 ThreadPool.QueueUserWorkItem(new WaitCallback(this.LocationChangedHelper));
             }
         }
@@ -196,10 +238,13 @@ namespace AddButtonToWindows
         {
             Execute ex = delegate ()
             {
-                if (OnTopControl != null)
-                    OnTopControl.Close();
-                GetWindowPosition(false);
-                SetControl(false);
+                OnTopControl.Show();
+                IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
+
+                OnTopControl.Left = left;
+                OnTopControl.Top = top;
+                Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
+                GetWindowPosition(true);
             };
             this.Dispatcher.Invoke(ex, null);
         }

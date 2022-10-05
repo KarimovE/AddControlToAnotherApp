@@ -72,7 +72,7 @@ namespace AddButtonToWindows
 
         internal delegate void WinEventProc(IntPtr winEventHookHandle, AccessibleEvents accEvent, IntPtr windowHandle, int objectId, int childId, uint eventThreadId, uint eventTimeInMilliseconds);
 
-        [DllImport("user32.dll")]
+        [DllImport("user64.dll")]
         internal static extern IntPtr SetFocus(IntPtr hWnd);
 
         [Flags]
