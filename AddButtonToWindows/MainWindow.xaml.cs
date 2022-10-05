@@ -129,8 +129,9 @@ namespace AddButtonToWindows
         void SetControl(bool log)
         {
             if (OnTopControl == null)
-            { 
-            OnTopControl = new HoverControl();
+            {
+                OnTopControl = new HoverControl();
+            }
             OnTopControl.Show();
             IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
 
@@ -141,7 +142,7 @@ namespace AddButtonToWindows
                 Log("Hover Control Added!");
 
             Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
-        }
+        
         }
         void RemoveControl(bool log)
         {
@@ -238,13 +239,13 @@ namespace AddButtonToWindows
         {
             Execute ex = delegate ()
             {
-                OnTopControl.Show();
-                IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
+                GetWindowPosition(true);
 
                 OnTopControl.Left = left;
                 OnTopControl.Top = top;
+                IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
                 Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
-                GetWindowPosition(true);
+                OnTopControl.Show();
             };
             this.Dispatcher.Invoke(ex, null);
         }
