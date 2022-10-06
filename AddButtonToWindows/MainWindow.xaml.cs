@@ -244,8 +244,8 @@ namespace AddButtonToWindows
 
                 OnTopControl.Show();
 
-                OnTopControl.Left = left - (left / 1700) * 300;
-                OnTopControl.Top = top - (top / 1000) * 200; 
+                OnTopControl.Left = left - (left / Screen.PrimaryScreen.Bounds.Width) * (380);
+                OnTopControl.Top = top - (top / Screen.PrimaryScreen.Bounds.Height) * (200); 
                 IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
                 Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
             };
