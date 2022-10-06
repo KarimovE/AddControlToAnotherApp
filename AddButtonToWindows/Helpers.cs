@@ -58,7 +58,7 @@ namespace AddButtonToWindows
 
         public static int SetWindowLong(IntPtr windowHandle, GWLParameter nIndex, int dwNewLong)
         {
-            if (IntPtr.Size == 8) 
+            if (IntPtr.Size == 8)
             {
                 return (int)NativeMethods.SetWindowLongPtr64(windowHandle, nIndex, new IntPtr(dwNewLong));
             }

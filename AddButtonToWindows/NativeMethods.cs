@@ -54,6 +54,8 @@ namespace AddButtonToWindows
         [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
         internal static extern IntPtr SetWindowLongPtr64(HandleRef hWnd, int nIndex, IntPtr dwNewLong);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
         [DllImport("user32.dll")]
         internal static extern IntPtr SetWinEventHook(

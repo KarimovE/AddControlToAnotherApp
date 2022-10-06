@@ -12,8 +12,8 @@ namespace AddButtonToWindows
     public partial class MainWindow : Window
     {
         private delegate void Execute();
-        private IntPtr TargetWnd = new IntPtr(0);
-        int left, top, right, bottom;
+        private IntPtr TargetWnd = new IntPtr();
+        double left, top, right, bottom;
         private BackgroundWorker bg_loadprocess;
 
         public MainWindow()
@@ -117,7 +117,7 @@ namespace AddButtonToWindows
             Marshal.ThrowExceptionForHR(Marshal.GetLastWin32Error());
         }
 
-        private HoverControl? OnTopControl;
+        public static HoverControl? OnTopControl=new HoverControl();
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
             SetControl(true);
@@ -135,8 +135,8 @@ namespace AddButtonToWindows
             OnTopControl.Show();
             IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
 
-            OnTopControl.Left = left;
-            OnTopControl.Top = top;
+            OnTopControl.Left = left - (left / 1700) * 300;
+            OnTopControl.Top = top - (top / 1000) * 200;
 
             if (log)
                 Log("Hover Control Added!");
@@ -235,19 +235,22 @@ namespace AddButtonToWindows
             }
         }
 
+        public int k = 0;
         private void LocationChangedHelper(object state)
         {
             Execute ex = delegate ()
             {
                 GetWindowPosition(true);
 
-                OnTopControl.Left = left;
-                OnTopControl.Top = top;
+                OnTopControl.Show();
+
+                OnTopControl.Left = left - (left / 1700) * 300;
+                OnTopControl.Top = top - (top / 1000) * 200; 
                 IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
                 Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
-                OnTopControl.Show();
             };
             this.Dispatcher.Invoke(ex, null);
+            k++;
         }
     }
 }

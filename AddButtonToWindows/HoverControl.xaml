@@ -11,13 +11,13 @@
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="106*"/>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Rectangle ToolTip="Click To Close" Name="rectangle1"
-                   Stroke="Green" Fill="#56fbb4" RadiusY="10" RadiusX="10" StrokeThickness="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,2,0,0"/>
+                   Stroke="Green" Fill="#56fbb4" RadiusY="10" RadiusX="10" StrokeThickness="1" Grid.RowSpan="2" Margin="0,2,0,0"/>
         <TextBlock FontSize="9" FontWeight="Bold" HorizontalAlignment="Left" 
                    Text="Control" Margin="51,2,0,6" Width="36" Grid.RowSpan="2" />
     </Grid>
