@@ -18,10 +18,12 @@ namespace AddButtonToWindows
 
         public MainWindow()
         {
+
             InitializeComponent();
             bg_loadprocess = new BackgroundWorker();
             bg_loadprocess.DoWork += new DoWorkEventHandler(bg_loadprocess_DoWork);
             bg_loadprocess.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_loadprocess_RunWorkerCompleted);
+
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -135,8 +137,8 @@ namespace AddButtonToWindows
             OnTopControl.Show();
             IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
 
-            OnTopControl.Left = left - (left / 1700) * 300;
-            OnTopControl.Top = top - (top / 1000) * 200;
+            OnTopControl.Left = left;
+            OnTopControl.Top = top;
 
             if (log)
                 Log("Hover Control Added!");
@@ -235,22 +237,20 @@ namespace AddButtonToWindows
             }
         }
 
-        public int k = 0;
         private void LocationChangedHelper(object state)
         {
             Execute ex = delegate ()
             {
                 GetWindowPosition(true);
 
-                OnTopControl.Show();
 
-                OnTopControl.Left = left - (left / Screen.PrimaryScreen.Bounds.Width) * (380);
-                OnTopControl.Top = top - (top / Screen.PrimaryScreen.Bounds.Height) * (200); 
+                OnTopControl.Left = left;
+                OnTopControl.Top = top; 
                 IntPtr OnTopHandle = Helpers.Find(OnTopControl.Name, OnTopControl.Title);
                 Helpers.SetWindowLong(OnTopHandle, Helpers.GWLParameter.GWL_HWNDPARENT, TargetWnd.ToInt32());
+                OnTopControl.Show();
             };
             this.Dispatcher.Invoke(ex, null);
-            k++;
         }
     }
 }
